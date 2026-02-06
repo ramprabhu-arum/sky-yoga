@@ -65,6 +65,7 @@ function useParallax(speed = 0.5) {
 // ─── COMPONENTS ───
 const IslandNav = ({ setOverlay, scrollTo }) => {
     const [shrunk, setShrunk] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     useEffect(() => {
         const h = () => setShrunk(window.scrollY > 50);
         window.addEventListener("scroll", h);
@@ -72,25 +73,51 @@ const IslandNav = ({ setOverlay, scrollTo }) => {
     }, []);
 
     return (
-        <div style={{ position: "fixed", top: 20, left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 100, pointerEvents: "none" }}>
-            <div style={{
-                pointerEvents: "auto", background: "rgba(255,255,255,0.8)", backdropFilter: "blur(12px)",
-                borderRadius: 40, padding: shrunk ? "12px 24px" : "20px 40px",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.03)", border: "1px solid rgba(255,255,255,0.4)",
-                transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)", display: "flex", alignItems: "center", gap: 20
-            }}>
-                <div style={{ width: shrunk ? 32 : 40, height: shrunk ? 32 : 40, borderRadius: "50%", background: "#7A9E7E", display: "flex", alignItems: "center", justifyContent: "center", color: "#FFF", fontWeight: 700, transition: "all 0.4s" }}>S</div>
-                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: shrunk ? 0 : 20, opacity: shrunk ? 0 : 1, width: shrunk ? 0 : "auto", overflow: "hidden", whiteSpace: "nowrap", transition: "all 0.4s", color: "#3D4F40" }}>Sky Yoga</div>
-                <div style={{ width: 1, height: 20, background: "#E0E0E0", margin: "0 4px" }} />
-                {['Home', 'About', 'Services', 'Courses', 'Centers', 'Stories'].map(item => (
-                    <button key={item} onClick={() => {
-                        if (item === 'Home') scrollTo?.('home');
-                        if (item === 'Courses') setOverlay('courses');
-                        if (item === 'Centers') setOverlay('centers');
-                    }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#5F6F62", fontWeight: 500 }}>{item}</button>
-                ))}
+        <>
+            <div style={{ position: "fixed", top: 20, left: 0, right: 0, display: "flex", justifyContent: "center", zIndex: 100, pointerEvents: "none", padding: "0 20px" }}>
+                <div style={{
+                    pointerEvents: "auto", background: "rgba(255,255,255,0.8)", backdropFilter: "blur(12px)",
+                    borderRadius: 40, padding: shrunk ? "12px 24px" : "clamp(12px, 3vw, 20px) clamp(20px, 4vw, 40px)",
+                    boxShadow: "0 10px 30px rgba(0,0,0,0.03)", border: "1px solid rgba(255,255,255,0.4)",
+                    transition: "all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)", display: "flex", alignItems: "center", gap: "clamp(12px, 2vw, 20px)",
+                    width: "100%", maxWidth: 900, justifyContent: "space-between"
+                }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "clamp(8px, 2vw, 12px)" }}>
+                        <div style={{ width: shrunk ? 32 : "clamp(32px, 5vw, 40px)", height: shrunk ? 32 : "clamp(32px, 5vw, 40px)", borderRadius: "50%", background: "#7A9E7E", display: "flex", alignItems: "center", justifyContent: "center", color: "#FFF", fontWeight: 700, transition: "all 0.4s", fontSize: "clamp(14px, 3vw, 18px)" }}>S</div>
+                        <div className="nav-title" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(16px, 3vw, 20px)", color: "#3D4F40" }}>Sky Yoga</div>
+                    </div>
+
+                    {/* Desktop Menu */}
+                    <div className="desktop-nav-menu" style={{ display: "flex", alignItems: "center", gap: 16 }}>
+                        <div style={{ width: 1, height: 20, background: "#E0E0E0" }} />
+                        {['Home', 'About', 'Services', 'Courses', 'Centers', 'Stories'].map(item => (
+                            <button key={item} onClick={() => {
+                                if (item === 'Home') scrollTo?.('home');
+                                if (item === 'Courses') setOverlay('courses');
+                                if (item === 'Centers') setOverlay('centers');
+                            }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#5F6F62", fontWeight: 500 }}>{item}</button>
+                        ))}
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="mobile-nav-btn" style={{ display: "none", background: "none", border: "none", cursor: "pointer", fontSize: 20, color: "#5F6F62", padding: 8 }}>☰</button>
+                </div>
             </div>
-        </div>
+
+            {/* Mobile Menu Dropdown */}
+            {mobileMenuOpen && (
+                <div className="mobile-nav-dropdown" style={{ position: "fixed", top: 80, left: 20, right: 20, zIndex: 99, background: "rgba(255,255,255,0.95)", backdropFilter: "blur(12px)", borderRadius: 20, padding: 20, boxShadow: "0 10px 30px rgba(0,0,0,0.1)", border: "1px solid rgba(255,255,255,0.4)" }}>
+                    {['Home', 'About', 'Services', 'Courses', 'Centers', 'Stories'].map(item => (
+                        <button key={item} onClick={() => {
+                            if (item === 'Home') scrollTo?.('home');
+                            if (item === 'Courses') setOverlay('courses');
+                            if (item === 'Centers') setOverlay('centers');
+                            setMobileMenuOpen(false);
+                        }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#5F6F62", fontWeight: 500, padding: "12px 0", width: "100%", textAlign: "left", display: "block" }}>{item}</button>
+                    ))}
+                </div>
+            )}
+        </>
     );
 };
 
