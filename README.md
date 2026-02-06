@@ -163,6 +163,38 @@ npm run preview  # Preview production build
 
 See [Prototype Blueprint](Documentation/prototype_blueprint.md) for detailed guidance.
 
+## 🚀 Deployment
+
+### Deploy to Render
+
+This project includes a `render.yaml` configuration for easy deployment to [Render](https://render.com):
+
+1. **Push to GitHub** (already done!)
+2. **Connect to Render**:
+   - Go to [Render Dashboard](https://dashboard.render.com)
+   - Click "New +" → "Blueprint"
+   - Connect your GitHub repository: `ramprabhu-arum/sky-yoga`
+   - Render will automatically detect `render.yaml`
+   - Click "Apply" to deploy
+
+3. **Your app will be live** at: `https://sky-yoga-prototypes.onrender.com`
+
+The deployment configuration:
+- **Runtime**: Node.js 18
+- **Build**: Installs dependencies and builds production bundle
+- **Start**: Serves the built app on Render's assigned port
+- **Plan**: Free tier (perfect for prototypes)
+
+### Manual Deployment
+
+For other platforms (Vercel, Netlify, etc.):
+
+```bash
+cd web-prototypes
+npm run build
+# Deploy the 'dist' folder
+```
+
 ## 📊 Data Model
 
 All prototypes use the same data structure:

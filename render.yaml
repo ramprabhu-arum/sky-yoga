@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: sky-yoga-prototypes
+    runtime: node
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: cd web-prototypes && npm install && npm run build
+    startCommand: cd web-prototypes && npm run preview -- --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.0
