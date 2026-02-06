@@ -96,10 +96,10 @@ const SessionRow = ({ s, onJoin }) => {
     return (
         <div style={{
             display: "flex", alignItems: "center", gap: 20, padding: "16px 0",
-            borderBottom: "1px solid #F5F5F5"
+            borderBottom: "1px solid #F5F5F5", flexWrap: "wrap"
         }}>
             <div style={{ width: 70, fontFamily: "'Outfit', sans-serif", fontSize: 13, fontWeight: 600, color: "#444" }}>{s.time}</div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, minWidth: 200 }}>
                 <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, color: "#222", fontWeight: 600 }}>{s.title}</div>
                 <div style={{ fontFamily: "'Outfit', sans-serif", fontSize: 12, color: "#888", marginTop: 2 }}>{s.instructor} • {s.day}</div>
             </div>
@@ -126,11 +126,11 @@ const RegistrationModal = ({ session, onClose }) => {
         <div style={{
             position: "fixed", inset: 0, zIndex: 1000,
             background: "rgba(255,255,255,0.8)", backdropFilter: "blur(12px)",
-            display: "flex", alignItems: "center", justifyContent: "center"
-        }}>
-            <div style={{
-                background: "#FFF", width: 500, borderRadius: 24, boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
-                border: "1px solid #EAEAEA", padding: 40, position: "relative"
+            display: "flex", alignItems: "center", justifyContent: "center", padding: 20
+        }} onClick={onClose}>
+            <div onClick={e => e.stopPropagation()} style={{
+                background: "#FFF", width: "100%", maxWidth: 500, borderRadius: 24, boxShadow: "0 20px 60px rgba(0,0,0,0.1)",
+                border: "1px solid #EAEAEA", padding: "clamp(24px, 5vw, 40px)", position: "relative"
             }}>
                 <button onClick={onClose} style={{
                     position: "absolute", top: 20, right: 20, border: "none", background: "none",
@@ -141,8 +141,8 @@ const RegistrationModal = ({ session, onClose }) => {
                     <>
                         <div style={{ marginBottom: 30 }}>
                             <div style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: 1, color: "#D4AF37", fontWeight: 600, marginBottom: 8 }}>Event Registration</div>
-                            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, margin: 0 }}>{session.title}</h2>
-                            <p style={{ color: "#666", marginTop: 8 }}>{session.day} • {session.time} • {center.name}</p>
+                            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 5vw, 32px)", margin: 0 }}>{session.title}</h2>
+                            <p style={{ color: "#666", marginTop: 8, fontSize: "clamp(12px, 3vw, 14px)" }}>{session.day} • {session.time} • {center.name}</p>
                         </div>
 
                         <div style={{ display: "grid", gap: 16 }}>
@@ -154,8 +154,8 @@ const RegistrationModal = ({ session, onClose }) => {
                 ) : (
                     <div style={{ textAlign: "center", padding: "40px 0" }}>
                         <div style={{ fontSize: 60, marginBottom: 20, color: "#D4AF37" }}>✓</div>
-                        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, margin: "0 0 16px" }}>You are confirmed.</h2>
-                        <p style={{ color: "#666", maxWidth: 300, margin: "0 auto 30px" }}>A calendar invite has been sent to your email address.</p>
+                        <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 5vw, 32px)", margin: "0 0 16px" }}>You are confirmed.</h2>
+                        <p style={{ color: "#666", maxWidth: 300, margin: "0 auto 30px", fontSize: "clamp(12px, 3vw, 14px)" }}>A calendar invite has been sent to your email address.</p>
                         <button onClick={onClose} style={{ background: "#F4F2ED", border: "none", padding: "12px 30px", borderRadius: 8, cursor: "pointer", fontWeight: 600 }}>Close</button>
                     </div>
                 )}
@@ -168,6 +168,7 @@ const RegistrationModal = ({ session, onClose }) => {
 export default function ZenDashboard() {
     const [nav, setNav] = useState("portal");
     const [regSession, setRegSession] = useState(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     // Featured = Next Online Session
     const featuredSession = SESSIONS.find(s => s.mode === "online") || SESSIONS[0];
@@ -176,7 +177,7 @@ export default function ZenDashboard() {
     return (
         <div style={{
             display: "flex", minHeight: "100vh", background: "#F9F9F9",
-            color: "#222", fontFamily: "'Outfit', sans-serif"
+            color: "#222", fontFamily: "'Outfit', sans-serif", flexDirection: "column"
         }}>
             <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap');
@@ -185,115 +186,142 @@ export default function ZenDashboard() {
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #DDD; borderRadius: 4px; }
+        
+        @media (min-width: 768px) {
+          .zen-container { flex-direction: row !important; }
+          .zen-sidebar { width: 280px !important; position: static !important; transform: none !important; }
+          .zen-mobile-header { display: none !important; }
+        }
       `}</style>
 
-            {/* SIDEBAR */}
-            <div style={{
-                width: 280, padding: 32, borderRight: "1px solid #EAEAEA", background: "#FFF",
-                display: "flex", flexDirection: "column"
+            {/* MOBILE HEADER */}
+            <div className="zen-mobile-header" style={{
+                display: "flex", justifyContent: "space-between", alignItems: "center",
+                padding: "16px 20px", background: "#FFF", borderBottom: "1px solid #EAEAEA"
             }}>
-                <div style={{ marginBottom: 48, paddingLeft: 12 }}>
-                    <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: "#222" }}>Sky Yoga.</div>
-                    <div style={{ fontSize: 11, color: "#999", letterSpacing: 1 }}>PUBLIC PORTAL</div>
-                </div>
-
-                <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
-                    <SidebarItem icon="⚡" label="What's On" active={nav === "portal"} onClick={() => setNav("portal")} />
-                    <SidebarItem icon="🏵️" label="Our Practices" active={nav === "practices"} onClick={() => setNav("practices")} />
-                    <SidebarItem icon="📍" label="Find a Center" active={nav === "centers"} onClick={() => setNav("centers")} />
-                    <SidebarItem icon="📅" label="Events Calendar" active={nav === "events"} onClick={() => setNav("events")} />
-                </div>
-
-                <div style={{
-                    background: "#222", borderRadius: 16, padding: 24,
-                    display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", color: "#FFF"
-                }}>
-                    <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, margin: "0 0 8px" }}>Member Access</h4>
-                    <p style={{ fontSize: 12, color: "#CCC", marginBottom: 16, lineHeight: 1.5 }}>Log in to track your progress and manage bookings.</p>
-                    <button style={{
-                        background: "#D4AF37", color: "#FFF", border: "none", width: "100%", padding: "12px",
-                        borderRadius: 8, fontWeight: 600, cursor: "pointer", fontSize: 12
-                    }}>SIGN IN</button>
-                </div>
+                <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 24, fontWeight: 600, color: "#222" }}>Sky Yoga.</div>
+                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{
+                    background: "none", border: "none", fontSize: 24, cursor: "pointer", padding: 8
+                }}>☰</button>
             </div>
 
-            {/* MAIN CONTENT */}
-            <div style={{ flex: 1, padding: 40, overflowY: "auto" }}>
+            <div className="zen-container" style={{ display: "flex", flex: 1 }}>
+                {/* SIDEBAR */}
+                <div className="zen-sidebar" style={{
+                    width: "100%", padding: 32, borderRight: "1px solid #EAEAEA", background: "#FFF",
+                    display: "flex", flexDirection: "column",
+                    position: "fixed", top: 0, left: 0, bottom: 0, zIndex: 100,
+                    transform: mobileMenuOpen ? "translateX(0)" : "translateX(-100%)",
+                    transition: "transform 0.3s"
+                }}>
+                    <button onClick={() => setMobileMenuOpen(false)} style={{
+                        display: "block", position: "absolute", top: 20, right: 20,
+                        background: "none", border: "none", fontSize: 24, cursor: "pointer", color: "#999"
+                    }} className="mobile-close">×</button>
 
-                {/* Header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 40 }}>
-                    <div>
-                        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 42, margin: 0, color: "#222" }}>Welcome to Stillness.</h1>
-                        <p style={{ color: "#666", marginTop: 8 }}>Discover the ancient science of Simplified Kundalini Yoga.</p>
+                    <div style={{ marginBottom: 48, paddingLeft: 12 }}>
+                        <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 28, fontWeight: 600, color: "#222" }}>Sky Yoga.</div>
+                        <div style={{ fontSize: 11, color: "#999", letterSpacing: 1 }}>PUBLIC PORTAL</div>
                     </div>
-                    <div style={{ display: "flex", gap: 12 }}>
-                        <button style={{ padding: "10px 20px", border: "1px solid #DDD", background: "white", borderRadius: 50, cursor: "pointer", fontSize: 13 }}>About Us</button>
-                        <button style={{ padding: "10px 20px", background: "#222", color: "white", border: "none", borderRadius: 50, cursor: "pointer", fontSize: 13 }} onClick={() => setRegSession(featuredSession)}>Get Started</button>
+
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
+                        <SidebarItem icon="⚡" label="What's On" active={nav === "portal"} onClick={() => { setNav("portal"); setMobileMenuOpen(false); }} />
+                        <SidebarItem icon="🏵️" label="Our Practices" active={nav === "practices"} onClick={() => { setNav("practices"); setMobileMenuOpen(false); }} />
+                        <SidebarItem icon="📍" label="Find a Center" active={nav === "centers"} onClick={() => { setNav("centers"); setMobileMenuOpen(false); }} />
+                        <SidebarItem icon="📅" label="Events Calendar" active={nav === "events"} onClick={() => { setNav("events"); setMobileMenuOpen(false); }} />
+                    </div>
+
+                    <div style={{
+                        background: "#222", borderRadius: 16, padding: 24,
+                        display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", color: "#FFF"
+                    }}>
+                        <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 20, margin: "0 0 8px" }}>Member Access</h4>
+                        <p style={{ fontSize: 12, color: "#CCC", marginBottom: 16, lineHeight: 1.5 }}>Log in to track your progress and manage bookings.</p>
+                        <button style={{
+                            background: "#D4AF37", color: "#FFF", border: "none", width: "100%", padding: "12px",
+                            borderRadius: 8, fontWeight: 600, cursor: "pointer", fontSize: 12
+                        }}>SIGN IN</button>
                     </div>
                 </div>
 
-                {/* Dashboard Grid */}
-                <div style={{
-                    display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-                    gridAutoRows: "minmax(180px, auto)", gap: 24
-                }}>
+                {/* MAIN CONTENT */}
+                <div style={{ flex: 1, padding: "clamp(20px, 4vw, 40px)", overflowY: "auto" }}>
 
-                    {/* 1. HERO WIDGET */}
-                    <Widget title="Featured Session" colSpan={2}>
-                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1 }}>
-                            <div>
-                                <div style={{ fontSize: 12, background: "#E6F4EA", color: "#1E8E3E", padding: "4px 10px", borderRadius: 10, display: "inline-block", marginBottom: 12, fontWeight: 600 }}>RECOMMENDED</div>
-                                <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, margin: "0 0 8px" }}>{featuredSession.title}</h2>
-                                <p style={{ color: "#666", fontSize: 14 }}>{featuredSession.day} • {featuredSession.instructor}</p>
-                            </div>
-                            <button onClick={() => setRegSession(featuredSession)} style={{
-                                background: "#222", color: "#FFF", border: "none", borderRadius: 100,
-                                width: 90, height: 90, fontSize: 14, cursor: "pointer", fontWeight: 600,
-                                boxShadow: "0 10px 20px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center"
-                            }}>JOIN<br />NOW</button>
+                    {/* Header */}
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginBottom: 40, flexWrap: "wrap", gap: 20 }}>
+                        <div>
+                            <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(28px, 6vw, 42px)", margin: 0, color: "#222" }}>Welcome to Stillness.</h1>
+                            <p style={{ color: "#666", marginTop: 8, fontSize: "clamp(13px, 3vw, 15px)" }}>Discover the ancient science of Simplified Kundalini Yoga.</p>
                         </div>
-                    </Widget>
+                        <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                            <button style={{ padding: "10px 20px", border: "1px solid #DDD", background: "white", borderRadius: 50, cursor: "pointer", fontSize: 13 }}>About Us</button>
+                            <button style={{ padding: "10px 20px", background: "#222", color: "white", border: "none", borderRadius: 50, cursor: "pointer", fontSize: 13 }} onClick={() => setRegSession(featuredSession)}>Get Started</button>
+                        </div>
+                    </div>
 
-                    {/* 2. COMMUNITY IMPACT */}
-                    <Widget title="Our Community" rowSpan={2}>
-                        <div style={{ display: "flex", flexDirection: "column", gap: 32, justifyContent: "center", flex: 1 }}>
-                            {COMMUNITY_STATS.map(st => (
-                                <div key={st.label}>
-                                    <div style={{ fontSize: 36, fontWeight: 300, fontFamily: "'Cormorant Garamond', serif" }}>{st.val}</div>
-                                    <div style={{ fontSize: 11, color: "#999", letterSpacing: 1, textTransform: "uppercase" }}>{st.label}</div>
-                                    <div style={{ height: 1, width: "100%", background: "#F0F0F0", marginTop: 16 }} />
+                    {/* Dashboard Grid */}
+                    <div style={{
+                        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))",
+                        gridAutoRows: "minmax(180px, auto)", gap: 24
+                    }}>
+
+                        {/* 1. HERO WIDGET */}
+                        <Widget title="Featured Session" colSpan={2} style={{ gridColumn: "1 / -1" }}>
+                            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, flexWrap: "wrap", gap: 20 }}>
+                                <div style={{ flex: 1, minWidth: 200 }}>
+                                    <div style={{ fontSize: 12, background: "#E6F4EA", color: "#1E8E3E", padding: "4px 10px", borderRadius: 10, display: "inline-block", marginBottom: 12, fontWeight: 600 }}>RECOMMENDED</div>
+                                    <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(24px, 5vw, 32px)", margin: "0 0 8px" }}>{featuredSession.title}</h2>
+                                    <p style={{ color: "#666", fontSize: 14 }}>{featuredSession.day} • {featuredSession.instructor}</p>
                                 </div>
-                            ))}
-                        </div>
-                    </Widget>
+                                <button onClick={() => setRegSession(featuredSession)} style={{
+                                    background: "#222", color: "#FFF", border: "none", borderRadius: 100,
+                                    width: 90, height: 90, fontSize: 14, cursor: "pointer", fontWeight: 600,
+                                    boxShadow: "0 10px 20px rgba(0,0,0,0.1)", display: "flex", alignItems: "center", justifyContent: "center"
+                                }}>JOIN<br />NOW</button>
+                            </div>
+                        </Widget>
 
-                    {/* 3. SCHEDULE */}
-                    <Widget title="Upcoming Sessions" colSpan={2} rowSpan={2}>
-                        <div style={{ display: "flex", flexDirection: "column" }}>
-                            {todaysSessions.map(s => <SessionRow key={s.id} s={s} onJoin={setRegSession} />)}
-                            <button style={{ marginTop: 20, background: "none", border: "none", color: "#888", fontSize: 12, textAlign: "center", cursor: "pointer" }}>View Full Calendar ▼</button>
-                        </div>
-                    </Widget>
+                        {/* 2. COMMUNITY IMPACT */}
+                        <Widget title="Our Community" rowSpan={2}>
+                            <div style={{ display: "flex", flexDirection: "column", gap: 32, justifyContent: "center", flex: 1 }}>
+                                {COMMUNITY_STATS.map(st => (
+                                    <div key={st.label}>
+                                        <div style={{ fontSize: 36, fontWeight: 300, fontFamily: "'Cormorant Garamond', serif" }}>{st.val}</div>
+                                        <div style={{ fontSize: 11, color: "#999", letterSpacing: 1, textTransform: "uppercase" }}>{st.label}</div>
+                                        <div style={{ height: 1, width: "100%", background: "#F0F0F0", marginTop: 16 }} />
+                                    </div>
+                                ))}
+                            </div>
+                        </Widget>
 
-                    {/* 4. PROMO */}
-                    <Widget title="Special Offer">
-                        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", background: "#F8F6F2", margin: "-24px", padding: "24px" }}>
-                            <div style={{ fontSize: 32, marginBottom: 10 }}>🎁</div>
-                            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, margin: "0 0 6px" }}>New to Sky Yoga?</h3>
-                            <p style={{ fontSize: 13, color: "#666", lineHeight: 1.5, marginBottom: 12 }}>Join our Intro Workshop this Saturday for free.</p>
-                            <button style={{ background: "transparent", border: "1px solid #D4AF37", color: "#D4AF37", padding: "8px", borderRadius: 4, cursor: "pointer", fontSize: 11, fontWeight: 700 }}>CLAIM PASS</button>
-                        </div>
-                    </Widget>
+                        {/* 3. SCHEDULE */}
+                        <Widget title="Upcoming Sessions" colSpan={2} rowSpan={2} style={{ gridColumn: "span 1" }}>
+                            <div style={{ display: "flex", flexDirection: "column" }}>
+                                {todaysSessions.map(s => <SessionRow key={s.id} s={s} onJoin={setRegSession} />)}
+                                <button style={{ marginTop: 20, background: "none", border: "none", color: "#888", fontSize: 12, textAlign: "center", cursor: "pointer" }}>View Full Calendar ▼</button>
+                            </div>
+                        </Widget>
 
-                    {/* 5. LOCATIONS */}
-                    <Widget title="Nearest Center">
-                        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, margin: "0 0 4px" }}>{CENTERS[0].name}</h3>
-                        <p style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>{CENTERS[0].address}</p>
-                        <div style={{ height: 100, background: "#EEE", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "#AAA", fontSize: 12 }}>
-                            Interactive Map
-                        </div>
-                    </Widget>
+                        {/* 4. PROMO */}
+                        <Widget title="Special Offer">
+                            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", background: "#F8F6F2", margin: "-24px", padding: "24px" }}>
+                                <div style={{ fontSize: 32, marginBottom: 10 }}>🎁</div>
+                                <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, margin: "0 0 6px" }}>New to Sky Yoga?</h3>
+                                <p style={{ fontSize: 13, color: "#666", lineHeight: 1.5, marginBottom: 12 }}>Join our Intro Workshop this Saturday for free.</p>
+                                <button style={{ background: "transparent", border: "1px solid #D4AF37", color: "#D4AF37", padding: "8px", borderRadius: 4, cursor: "pointer", fontSize: 11, fontWeight: 700 }}>CLAIM PASS</button>
+                            </div>
+                        </Widget>
 
+                        {/* 5. LOCATIONS */}
+                        <Widget title="Nearest Center">
+                            <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 22, margin: "0 0 4px" }}>{CENTERS[0].name}</h3>
+                            <p style={{ fontSize: 13, color: "#666", marginBottom: 16 }}>{CENTERS[0].address}</p>
+                            <div style={{ height: 100, background: "#EEE", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", color: "#AAA", fontSize: 12 }}>
+                                Interactive Map
+                            </div>
+                        </Widget>
+
+                    </div>
                 </div>
             </div>
 

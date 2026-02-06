@@ -111,6 +111,7 @@ const SessionCard = ({ session, onSignUp, onCenterClick, showCenter = true, comp
 // ─── NAVIGATION ───
 const EditorialNav = ({ onCoursesClick, onCentersClick, scrollTo }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     useEffect(() => {
         const h = () => setScrolled(window.scrollY > 100);
         window.addEventListener("scroll", h);
@@ -118,13 +119,18 @@ const EditorialNav = ({ onCoursesClick, onCentersClick, scrollTo }) => {
     }, []);
 
     return (
-        <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: scrolled ? "#FFF" : "transparent", borderBottom: scrolled ? "2px solid #1A1A1A" : "none", transition: "all 0.4s", padding: "20px 40px" }}>
+        <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, background: scrolled ? "#FFF" : "transparent", borderBottom: scrolled ? "2px solid #1A1A1A" : "none", transition: "all 0.4s", padding: "clamp(12px, 3vw, 20px) clamp(20px, 4vw, 40px)" }}>
             <div style={{ maxWidth: 1400, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <div onClick={() => scrollTo?.('home')} style={{ cursor: "pointer" }}>
-                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 900, color: "#1A1A1A", letterSpacing: -1 }}>SKY</div>
-                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 8, letterSpacing: 3, color: "#666", textTransform: "uppercase", marginTop: -4 }}>Meditation • Dallas</div>
+                    <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(20px, 4vw, 28px)", fontWeight: 900, color: "#1A1A1A", letterSpacing: -1 }}>SKY</div>
+                    <div style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(6px, 1.5vw, 8px)", letterSpacing: 3, color: "#666", textTransform: "uppercase", marginTop: -4 }}>Meditation • Dallas</div>
                 </div>
-                <div style={{ display: "flex", gap: 32, alignItems: "center" }}>
+
+                {/* Mobile Menu Button */}
+                <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="mobile-menu-btn" style={{ display: "none", background: "none", border: "2px solid #1A1A1A", padding: "8px 12px", cursor: "pointer", fontSize: 18, color: "#1A1A1A" }}>☰</button>
+
+                {/* Desktop Menu */}
+                <div className="desktop-menu" style={{ display: "flex", gap: 32, alignItems: "center" }}>
                     {['Home', 'About', 'Services'].map(item => (
                         <button key={item} onClick={() => scrollTo?.(item.toLowerCase())} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#1A1A1A", fontWeight: 600, padding: 0 }}>{item}</button>
                     ))}
@@ -133,6 +139,18 @@ const EditorialNav = ({ onCoursesClick, onCentersClick, scrollTo }) => {
                     <button style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#1A1A1A", fontWeight: 600, padding: 0 }}>Stories</button>
                     <button onClick={onCentersClick} style={{ background: "#E63946", border: "none", borderRadius: 0, padding: "10px 24px", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#FFF", fontWeight: 700 }}>REGISTER</button>
                 </div>
+
+                {/* Mobile Menu Dropdown */}
+                {mobileMenuOpen && (
+                    <div className="mobile-menu" style={{ position: "absolute", top: "100%", left: 0, right: 0, background: "#FFF", borderBottom: "2px solid #1A1A1A", padding: "20px", display: "none", flexDirection: "column", gap: 16 }}>
+                        {['Home', 'About', 'Services'].map(item => (
+                            <button key={item} onClick={() => { scrollTo?.(item.toLowerCase()); setMobileMenuOpen(false); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#1A1A1A", fontWeight: 600, padding: "8px 0", textAlign: "left" }}>{item}</button>
+                        ))}
+                        <button onClick={() => { onCoursesClick(); setMobileMenuOpen(false); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#1A1A1A", fontWeight: 600, padding: "8px 0", textAlign: "left" }}>Courses</button>
+                        <button onClick={() => { onCentersClick(); setMobileMenuOpen(false); }} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#1A1A1A", fontWeight: 600, padding: "8px 0", textAlign: "left" }}>Centers</button>
+                        <button onClick={() => { onCentersClick(); setMobileMenuOpen(false); }} style={{ background: "#E63946", border: "none", borderRadius: 0, padding: "12px 24px", cursor: "pointer", fontFamily: "'Inter', sans-serif", fontSize: 10, letterSpacing: 2, textTransform: "uppercase", color: "#FFF", fontWeight: 700, width: "100%" }}>REGISTER</button>
+                    </div>
+                )}
             </div>
         </nav>
     );
@@ -161,7 +179,7 @@ const ExploreCoursesOverlay = ({ onClose, onCenterClick, onSignUp, initialPracti
                 <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 40px" }}>
                     <button onClick={() => setSelectedPractice(null)} style={{ border: "2px solid #1A1A1A", background: "none", cursor: "pointer", marginBottom: 40, fontSize: 11, fontFamily: "'Inter', sans-serif", fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", padding: "10px 20px", borderRadius: 0 }}>← ALL PRACTICES</button>
 
-                    <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: 60, marginBottom: 60 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))", gap: "clamp(30px, 6vw, 60px)", marginBottom: "clamp(30px, 6vw, 60px)" }}>
                         <div>
                             <div style={{ fontSize: 80, marginBottom: 20 }}>{p.icon}</div>
                             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(48px, 6vw, 72px)", fontWeight: 900, color: "#1A1A1A", lineHeight: 0.95, marginBottom: 16 }}>{p.title}</h1>
@@ -230,7 +248,7 @@ const ExploreCoursesOverlay = ({ onClose, onCenterClick, onSignUp, initialPracti
                     CHOOSE A PRACTICE TO SEE ALL AVAILABLE SESSIONS
                 </p>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))", gap: "clamp(20px, 4vw, 40px)" }}>
                     {PRACTICES.map((p, idx) => {
                         const sessionCount = SESSIONS.filter(s => s.type === p.id).length;
                         const centerCount = [...new Set(SESSIONS.filter(s => s.type === p.id).map(s => s.centerId))].length;
@@ -399,7 +417,7 @@ const RegistrationModal = ({ session, onClose }) => {
 
     return (
         <div style={{ position: "fixed", inset: 0, zIndex: 300, background: "rgba(0,0,0,0.8)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={onClose}>
-            <div onClick={e => e.stopPropagation()} style={{ background: "#FFF", padding: 50, borderRadius: 0, width: 500, border: `4px solid ${practice.color}` }}>
+            <div onClick={e => e.stopPropagation()} style={{ background: "#FFF", padding: "clamp(24px, 5vw, 50px)", borderRadius: 0, width: "100%", maxWidth: 500, border: `4px solid ${practice.color}`, margin: "0 20px" }}>
                 <button onClick={onClose} style={{ position: "absolute", top: 20, right: 20, width: 36, height: 36, borderRadius: 0, background: "#1A1A1A", border: "none", cursor: "pointer", fontSize: 18, color: "#FFF", fontWeight: 700 }}>×</button>
                 {step === 1 ? (
                     <>
@@ -468,12 +486,18 @@ export default function EditorialSKY() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;600;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
         ::selection { background: #E63946; color: #FFF; }
+        
+        @media (max-width: 768px) {
+          .desktop-menu { display: none !important; }
+          .mobile-menu-btn { display: block !important; }
+          .mobile-menu { display: flex !important; }
+        }
       `}</style>
 
             <EditorialNav onCoursesClick={() => openCourses()} onCentersClick={() => openCenters()} scrollTo={scrollTo} />
 
-            <div id="home" style={{ maxWidth: 1400, margin: "0 auto", padding: "180px 40px 100px" }}>
-                <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.8fr", gap: 80, alignItems: "center", marginBottom: 120 }}>
+            <div id="home" style={{ maxWidth: 1400, margin: "0 auto", padding: "clamp(100px, 20vw, 180px) clamp(20px, 4vw, 40px) clamp(60px, 10vw, 100px)" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))", gap: "clamp(40px, 8vw, 80px)", alignItems: "center", marginBottom: "clamp(60px, 12vw, 120px)" }}>
                     <div>
                         <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(64px, 10vw, 120px)", fontWeight: 900, color: "#1A1A1A", lineHeight: 0.9, marginBottom: 32 }}>
                             TRANSFORM<br />YOUR MIND
@@ -495,18 +519,17 @@ export default function EditorialSKY() {
                 </div>
 
                 {/* Asymmetric Practice Grid */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 24 }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))", gap: 24 }}>
                     {PRACTICES.map((p, idx) => {
-                        const spans = [7, 5, 6, 6];
                         const heights = [420, 380, 460, 400];
                         return (
                             <div key={p.id} onClick={() => openCourses(p.id)}
-                                style={{ gridColumn: `span ${spans[idx]}`, height: heights[idx], background: idx % 2 === 0 ? p.color : "#FFF", border: idx % 2 === 0 ? "none" : `4px solid ${p.color}`, padding: 40, cursor: "pointer", display: "flex", flexDirection: "column", justifyContent: "flex-end", transition: "all 0.4s", position: "relative", overflow: "hidden" }}
+                                style={{ minHeight: "clamp(300px, 40vw, " + heights[idx] + "px)", background: idx % 2 === 0 ? p.color : "#FFF", border: idx % 2 === 0 ? "none" : `4px solid ${p.color}`, padding: "clamp(24px, 5vw, 40px)", cursor: "pointer", display: "flex", flexDirection: "column", justifyContent: "flex-end", transition: "all 0.4s", position: "relative", overflow: "hidden" }}
                                 onMouseEnter={e => e.currentTarget.style.transform = "translateY(-8px)"}
                                 onMouseLeave={e => e.currentTarget.style.transform = "translateY(0)"}>
-                                <div style={{ fontSize: 64, marginBottom: 20, opacity: idx % 2 === 0 ? 0.3 : 1 }}>{p.icon}</div>
-                                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 900, color: idx % 2 === 0 ? "#FFF" : "#1A1A1A", marginBottom: 8, lineHeight: 1.1 }}>{p.title}</h3>
-                                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 13, color: idx % 2 === 0 ? "rgba(255,255,255,0.8)" : "#666", marginBottom: 16 }}>{p.tagline}</p>
+                                <div style={{ fontSize: "clamp(40px, 8vw, 64px)", marginBottom: 20, opacity: idx % 2 === 0 ? 0.3 : 1 }}>{p.icon}</div>
+                                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(20px, 4vw, 28px)", fontWeight: 900, color: idx % 2 === 0 ? "#FFF" : "#1A1A1A", marginBottom: 8, lineHeight: 1.1 }}>{p.title}</h3>
+                                <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "clamp(11px, 2vw, 13px)", color: idx % 2 === 0 ? "rgba(255,255,255,0.8)" : "#666", marginBottom: 16 }}>{p.tagline}</p>
                                 <div style={{ fontFamily: "'Inter', sans-serif", fontSize: 11, color: idx % 2 === 0 ? "#FFF" : p.color, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase" }}>
                                     EXPLORE →
                                 </div>

@@ -65,11 +65,30 @@ PRACTICES = [4 core practices: meditation, exercise, kayakalpa, introspection]
 - **Step 1**: Form with Name (required), Email (required), Phone (optional), Experience level (select), Notes (textarea)
 - **Step 2**: Confirmation screen with "Namaste" message, booking summary, email confirmation notice
 
-### 6. Technical Requirements
+### 6. Responsive Design Requirements
+**Mobile Breakpoint**: 768px
+
+**Required Responsive Features**:
+- **Navigation**: Mobile hamburger menu or collapsible sidebar
+- **Typography**: Use `clamp()` for fluid font sizes (e.g., `clamp(20px, 4vw, 28px)`)
+- **Grids**: Use `repeat(auto-fit, minmax(min(300px, 100%), 1fr))` for flexible layouts
+- **Padding/Spacing**: Use `clamp()` for responsive spacing (e.g., `clamp(20px, 4vw, 40px)`)
+- **Modals**: Full-width on mobile with responsive padding
+- **Touch Targets**: Minimum 44px for buttons on mobile
+
+**CSS Media Query Pattern**:
+```css
+@media (max-width: 768px) {
+  .desktop-menu { display: none !important; }
+  .mobile-menu { display: flex !important; }
+}
+```
+
+**Technical Requirements**:
 - **Scroll locking**: Background freezes when overlays open
 - **Breadcrumbs**: "← Back" navigation in all overlay views
 - **Hover feedback**: Visual elevation/highlighting on interactive cards
-- **Responsive**: Mobile-friendly layouts
+- **Mobile-first**: Design works on screens as small as 320px
 
 ---
 
