@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 // Lazy load the prototypes
 const SkyYogaV3 = lazy(() => import('./designs/sky-yoga-v3/index'));
+const SkyYogaV5 = lazy(() => import('./designs/sky-yoga-v5/index'));
 const SkyYogaZen = lazy(() => import('./designs/sky-yoga-zen/index'));
 const SkyYogaSerene = lazy(() => import('./designs/sky-yoga-serene/index'));
 const SkyYogaEditorial = lazy(() => import('./designs/sky-yoga-editorial/index'));
@@ -68,6 +69,36 @@ function Home() {
           <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '28px', color: '#FAF7F0', margin: '0 0 8px 0' }}>Sky Yoga V3</h2>
           <p style={{ color: 'rgba(250,247,240,0.4)', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
             The original comprehensive layout focusing on warm tones, rich typography, and content density.
+          </p>
+          <div style={{ marginTop: '24px', color: '#C4956A', fontSize: '14px', fontWeight: 600 }}>Launch Prototype →</div>
+        </Link>
+
+        <Link to="/sky-yoga-v5" className="card" style={{
+          textDecoration: 'none',
+          background: 'rgba(255,255,255,0.03)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          borderRadius: '24px',
+          padding: '32px',
+          transition: 'all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start'
+        }}>
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '20px' }}>
+            <div style={{
+              padding: '8px 16px', borderRadius: '100px',
+              background: 'rgba(196,149,106,0.1)', color: '#C4956A',
+              fontSize: '12px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase'
+            }}>Classic v1.1</div>
+            <div style={{
+              padding: '8px 16px', borderRadius: '100px',
+              background: 'rgba(139,154,111,0.1)', color: '#8B9A6F',
+              fontSize: '12px', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase'
+            }}>Version 1.0</div>
+          </div>
+          <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '28px', color: '#FAF7F0', margin: '0 0 8px 0' }}>Sky Yoga V5</h2>
+          <p style={{ color: 'rgba(250,247,240,0.4)', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
+            Enhanced classic design with books, videos, and multi-day program registration features.
           </p>
           <div style={{ marginTop: '24px', color: '#C4956A', fontSize: '14px', fontWeight: 600 }}>Launch Prototype →</div>
         </Link>
@@ -156,6 +187,11 @@ export default function App() {
         <Route path="/sky-yoga-v3/*" element={
           <Suspense fallback={<div style={{ height: '100vh', background: '#FAF7F0' }} />}>
             <SkyYogaV3 />
+          </Suspense>
+        } />
+        <Route path="/sky-yoga-v5/*" element={
+          <Suspense fallback={<div style={{ height: '100vh', background: '#FAF7F0' }} />}>
+            <SkyYogaV5 />
           </Suspense>
         } />
         <Route path="/sky-yoga-zen/*" element={
