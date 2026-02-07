@@ -429,6 +429,11 @@ export default function SereneGarden() {
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=DM+Sans:wght@400;500;700&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
         ::selection { background: #D4B483; color: #FFF; }
+        
+        @media (max-width: 768px) {
+          .desktop-nav-menu { display: none !important; }
+          .mobile-nav-btn { display: block !important; }
+        }
       `}</style>
 
             <IslandNav setOverlay={openCourses} scrollTo={scrollTo} />
