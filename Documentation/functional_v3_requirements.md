@@ -60,7 +60,7 @@ The registration flow is handled via a focused, two-step modal:
   - **Required**: Full Name, Email Address.
   - **Optional**: Phone Number, Experience Level (Select), and Notes (Textarea).
 - **Step 2 (Confirmation)**:
-  - Displays a "Namaste" thank-you screen.
+  - Displays a "Welcome" thank-you screen.
   - Summarizes the booking (Session Title).
   - Notes that a confirmation email has been sent.
 

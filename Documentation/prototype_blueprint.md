@@ -63,7 +63,7 @@ PRACTICES = [4 core practices: meditation, exercise, kayakalpa, introspection]
 ### 5. Registration Modal
 **Two-step flow**:
 - **Step 1**: Form with Name (required), Email (required), Phone (optional), Experience level (select), Notes (textarea)
-- **Step 2**: Confirmation screen with "Namaste" message, booking summary, email confirmation notice
+- **Step 2**: Confirmation screen with "Welcome" message, booking summary, email confirmation notice
 
 ### 6. Responsive Design Requirements
 **Mobile Breakpoint**: 768px

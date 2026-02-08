@@ -400,7 +400,7 @@ const RegistrationModal = ({ session, onClose }) => {
                 ) : (
                     <>
                         <div style={{ fontSize: 40, marginBottom: 16 }}>🌿</div>
-                        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, marginBottom: 8 }}>Namaste, {form.name}!</h3>
+                        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, marginBottom: 8 }}>Welcome, {form.name}!</h3>
                         <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#666", marginBottom: 24 }}>You're registered for <strong>{session.title}</strong>.<br />Confirmation sent to <strong>{form.email}</strong>.</p>
                         <button onClick={onClose} style={{ padding: "12px 32px", border: "none", background: "#3D4F40", color: "#FFF", borderRadius: 24, cursor: "pointer", fontFamily: "'DM Sans', sans-serif" }}>Done</button>
                     </>

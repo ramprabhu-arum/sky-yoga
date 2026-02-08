@@ -134,7 +134,7 @@ function RegistrationModal({ session, onClose }) {
                 ) : (
                     <div style={{ textAlign: "center", padding: "20px 0" }}>
                         <div style={{ fontSize: 50, marginBottom: 20 }}>🙏</div>
-                        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, color: "#2D2C2A" }}>Namaste, {form.name}</h3>
+                        <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 32, color: "#2D2C2A" }}>Welcome, {form.name}</h3>
                         <p style={{ color: "#8E8C87", lineHeight: 1.6, marginTop: 12 }}>You're all set. A confirmation email has been sent to {form.email}.</p>
                         <button onClick={onClose} style={{ marginTop: 32, padding: "12px 32px", background: "#2D2C2A", color: "white", border: "none", borderRadius: "30px", fontWeight: 600, cursor: "pointer" }}>Close</button>
                     </div>

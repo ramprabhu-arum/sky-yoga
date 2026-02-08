@@ -452,7 +452,7 @@ const RegistrationModal = ({ session, onClose }) => {
                     <>
                         <div style={{ textAlign: "center" }}>
                             <div style={{ fontSize: 64, marginBottom: 24 }}>{practice.icon}</div>
-                            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 900, color: "#1A1A1A", marginBottom: 12 }}>Namaste!</h3>
+                            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: 36, fontWeight: 900, color: "#1A1A1A", marginBottom: 12 }}>Welcome!</h3>
                             <p style={{ fontFamily: "'Inter', sans-serif", color: "#666", marginBottom: 8, fontSize: 14 }}>You're registered for</p>
                             <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 20, fontWeight: 700, color: practice.color, marginBottom: 20 }}>{session.title}</p>
                             <p style={{ fontFamily: "'Inter', sans-serif", fontSize: 12, color: "#999", marginBottom: 32 }}>Confirmation sent to <strong>{form.email}</strong></p>

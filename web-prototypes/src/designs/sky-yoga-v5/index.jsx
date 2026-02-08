@@ -5,31 +5,31 @@ const Logo = ({ h = 42 }) => (
   <svg width={h} height={h * 0.88} viewBox="0 0 120 106" fill="none">
     <ellipse cx="60" cy="53" rx="58" ry="48" fill="#E8881B" />
     <ellipse cx="56" cy="49" rx="44" ry="37" fill="#2E6AB2" />
-    <path d="M30 49Q42 30 56 28Q44 36 40 49Q44 62 58 66Q48 63 38 56Q30 51 30 49Z" fill="#fff" opacity=".12"/>
+    <path d="M30 49Q42 30 56 28Q44 36 40 49Q44 62 58 66Q48 63 38 56Q30 51 30 49Z" fill="#fff" opacity=".12" />
     <text x="56" y="42" textAnchor="middle" fontFamily="Georgia,serif" fontSize="28" fontWeight="700" fill="#fff" fontStyle="italic">sky</text>
     <text x="44" y="29" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="7.5" fontWeight="700" fill="#fff" letterSpacing="1.8">VETHATHIRI</text>
     <text x="70" y="72" textAnchor="middle" fontFamily="Arial,sans-serif" fontSize="15" fontWeight="700" fill="#fff">Yoga</text>
-    <path d="M42 57Q53 53 66 59" stroke="#E8881B" strokeWidth="3" fill="none" strokeLinecap="round"/>
+    <path d="M42 57Q53 53 66 59" stroke="#E8881B" strokeWidth="3" fill="none" strokeLinecap="round" />
   </svg>
 );
 
 // ─── BOOKS ───
 const BOOKS = [
-  { id:"b1", title:"Simplified Physical Exercises", desc:"Complete guide to SKY's 9 exercises for body harmony.", cat:"exercise", url:"https://www.amazon.com/s?k=vethathiri+maharishi+simplified+physical+exercises", clr:"#8B9A6F" },
-  { id:"b2", title:"Kayakalpam", desc:"Ancient Siddha science of rejuvenation and anti-aging.", cat:"kayakalpa", url:"https://www.amazon.com/KAYAKALPAM-27-VETHATHIRI-MAHARISHI-ebook/dp/B07RZLBRW7", clr:"#9A7FB5" },
-  { id:"b3", title:"Five Steps for Realization of Truth", desc:"Systematic guide through five stages of spiritual realization.", cat:"meditation", url:"https://www.amazon.com/s?k=vethathiri+maharishi+five+steps+realization", clr:"#C4956A" },
-  { id:"b4", title:"Food Habit", desc:"Yogic dietary guidance — how food affects meditation.", cat:"wellness", url:"https://www.amazon.com/s?k=vethathiri+maharishi+food+habit", clr:"#6F8B9A" },
-  { id:"b5", title:"Manavalakkalai", desc:"Art of introspection — sublimating negative emotions.", cat:"introspection", url:"https://www.amazon.com/s?k=vethathiri+maharishi+manavalakkalai", clr:"#6F8B9A" },
-  { id:"b6", title:"World Peace", desc:"200 songs and philosophy for global harmony.", cat:"philosophy", url:"https://www.amazon.com/s?k=vethathiri+maharishi+world+peace", clr:"#C4956A" },
+  { id: "b1", title: "Simplified Physical Exercises", desc: "Complete guide to SKY's 9 exercises for body harmony.", cat: "exercise", url: "https://www.amazon.com/s?k=vethathiri+maharishi+simplified+physical+exercises", clr: "#8B9A6F" },
+  { id: "b2", title: "Kayakalpam", desc: "Ancient Siddha science of rejuvenation and anti-aging.", cat: "kayakalpa", url: "https://www.amazon.com/KAYAKALPAM-27-VETHATHIRI-MAHARISHI-ebook/dp/B07RZLBRW7", clr: "#9A7FB5" },
+  { id: "b3", title: "Five Steps for Realization of Truth", desc: "Systematic guide through five stages of spiritual realization.", cat: "meditation", url: "https://www.amazon.com/s?k=vethathiri+maharishi+five+steps+realization", clr: "#C4956A" },
+  { id: "b4", title: "Food Habit", desc: "Yogic dietary guidance — how food affects meditation.", cat: "wellness", url: "https://www.amazon.com/s?k=vethathiri+maharishi+food+habit", clr: "#6F8B9A" },
+  { id: "b5", title: "Manavalakkalai", desc: "Art of introspection — sublimating negative emotions.", cat: "introspection", url: "https://www.amazon.com/s?k=vethathiri+maharishi+manavalakkalai", clr: "#6F8B9A" },
+  { id: "b6", title: "World Peace", desc: "200 songs and philosophy for global harmony.", cat: "philosophy", url: "https://www.amazon.com/s?k=vethathiri+maharishi+world+peace", clr: "#C4956A" },
 ];
 // ─── VIDEOS ───
 const VIDEOS = [
-  { id:"v1", title:"Introduction to SKY Meditation", desc:"Fundamentals of Simplified Kundalini Yoga.", cat:"meditation" },
-  { id:"v2", title:"Simplified Physical Exercises", desc:"Complete walkthrough of all 9 SKY exercises.", cat:"exercise" },
-  { id:"v3", title:"Kayakalpa Yoga Explained", desc:"Ancient science of body rejuvenation.", cat:"kayakalpa" },
-  { id:"v4", title:"Maharishi — Life & Teachings", desc:"Documentary on the founder's journey.", cat:"about" },
-  { id:"v5", title:"Introspection Techniques", desc:"Practical guide to emotional mastery.", cat:"introspection" },
-  { id:"v6", title:"Practitioner Testimonials", desc:"Real stories from around the world.", cat:"testimonial" },
+  { id: "v1", title: "Introduction to SKY Meditation", desc: "Fundamentals of Simplified Kundalini Yoga.", cat: "meditation" },
+  { id: "v2", title: "Simplified Physical Exercises", desc: "Complete walkthrough of all 9 SKY exercises.", cat: "exercise" },
+  { id: "v3", title: "Kayakalpa Yoga Explained", desc: "Ancient science of body rejuvenation.", cat: "kayakalpa" },
+  { id: "v4", title: "Maharishi — Life & Teachings", desc: "Documentary on the founder's journey.", cat: "about" },
+  { id: "v5", title: "Introspection Techniques", desc: "Practical guide to emotional mastery.", cat: "introspection" },
+  { id: "v6", title: "Practitioner Testimonials", desc: "Real stories from around the world.", cat: "testimonial" },
 ];
 const YT_CHANNEL = "https://www.youtube.com/@skyyogatv";
 
@@ -369,7 +369,7 @@ function ProgramRegModal({ program, onClose, members, onRegister }) {
           {step === 2 && (
             <div style={{ textAlign: "center", padding: "12px 0" }}>
               <div style={{ fontSize: 44, marginBottom: 14 }}>🙏</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Namaste, {form.name}!</h3>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Welcome, {form.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#7A6B5A", lineHeight: 1.7, marginBottom: 4 }}>
                 You're registered for <strong>{program.title}</strong>.
               </p>
@@ -490,7 +490,7 @@ function RegistrationModal({ session, onClose }) {
           ) : (
             <div style={{ textAlign: "center", padding: "16px 0" }}>
               <div style={{ fontSize: 44, marginBottom: 14 }}>🙏</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Namaste, {form.name}!</h3>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Welcome, {form.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#7A6B5A", lineHeight: 1.7, marginBottom: 4 }}>
                 You're registered for <strong>{session.title}</strong>.
               </p>
@@ -558,14 +558,14 @@ function ExploreCourses({ onClose, onCenterClick, onSignUp }) {
     const p = PRACTICES.find(pr => pr.id === selectedPractice);
     const sessions = SESSIONS.filter(s => s.type === selectedPractice);
     const centersWithSessions = [...new Set(sessions.map(s => s.centerId))].map(cid => CENTERS.find(c => c.id === cid));
-    
+
     // Filter centers by location search
-    const filteredCenters = locSearch.trim() 
+    const filteredCenters = locSearch.trim()
       ? centersWithSessions.filter(c => {
-          const loc = LOCATIONS.find(l => l.id === c.locationId);
-          const q = locSearch.toLowerCase();
-          return c.name.toLowerCase().includes(q) || loc.name.toLowerCase().includes(q) || loc.state.toLowerCase().includes(q) || (loc.country || "").toLowerCase().includes(q) || c.address.toLowerCase().includes(q);
-        })
+        const loc = LOCATIONS.find(l => l.id === c.locationId);
+        const q = locSearch.toLowerCase();
+        return c.name.toLowerCase().includes(q) || loc.name.toLowerCase().includes(q) || loc.state.toLowerCase().includes(q) || (loc.country || "").toLowerCase().includes(q) || c.address.toLowerCase().includes(q);
+      })
       : centersWithSessions;
 
     return (
@@ -596,7 +596,7 @@ function ExploreCourses({ onClose, onCenterClick, onSignUp }) {
           <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#A0907C" }}>
             Available at {centersWithSessions.length} center{centersWithSessions.length !== 1 ? "s" : ""}
           </div>
-          <input 
+          <input
             type="text" placeholder="Search by city, state, or center name..." value={locSearch}
             onChange={e => setLocSearch(e.target.value)}
             style={{
@@ -804,7 +804,7 @@ function FindCenter({ onClose, onCourseClick, onSignUp, initialCenter }) {
 
       {/* Location search */}
       <div style={{ maxWidth: 440, margin: "0 auto 12px", position: "relative" }}>
-        <input 
+        <input
           type="text" placeholder="Search by city, state, or country..." value={searchQ}
           onChange={e => { setSearchQ(e.target.value); setSelLocation(null); }}
           style={{
@@ -860,40 +860,40 @@ function FindCenter({ onClose, onCourseClick, onSignUp, initialCenter }) {
             </div>
           );
           return filtered.map(c => {
-          const loc = LOCATIONS.find(l => l.id === c.locationId);
-          const sessionCount = SESSIONS.filter(s => s.centerId === c.id).length;
-          const practiceTypes = [...new Set(SESSIONS.filter(s => s.centerId === c.id).map(s => s.type))];
-          const nextSession = SESSIONS.filter(s => s.centerId === c.id)[0];
-          return (
-            <div key={c.id} onClick={() => setSelCenter(c.id)} style={{
-              background: "#F7F2EA", borderRadius: 18, padding: 28, cursor: "pointer",
-              border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s",
-              display: "flex", flexDirection: "column",
-            }}
-              onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.2)"; }}
-              onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.08)"; }}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 14 }}>
-                <span style={{ fontSize: 10, padding: "4px 12px", borderRadius: 12, background: loc.id === "online" ? "rgba(111,139,154,0.1)" : "rgba(139,154,111,0.1)", color: loc.id === "online" ? "#6F8B9A" : "#8B9A6F", fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5 }}>
-                  {loc.id === "online" ? "🌐 Virtual" : `📍 ${loc.name}`}
-                </span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: "#C4956A" }}>→</span>
+            const loc = LOCATIONS.find(l => l.id === c.locationId);
+            const sessionCount = SESSIONS.filter(s => s.centerId === c.id).length;
+            const practiceTypes = [...new Set(SESSIONS.filter(s => s.centerId === c.id).map(s => s.type))];
+            const nextSession = SESSIONS.filter(s => s.centerId === c.id)[0];
+            return (
+              <div key={c.id} onClick={() => setSelCenter(c.id)} style={{
+                background: "#F7F2EA", borderRadius: 18, padding: 28, cursor: "pointer",
+                border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s",
+                display: "flex", flexDirection: "column",
+              }}
+                onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.2)"; }}
+                onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.08)"; }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 14 }}>
+                  <span style={{ fontSize: 10, padding: "4px 12px", borderRadius: 12, background: loc.id === "online" ? "rgba(111,139,154,0.1)" : "rgba(139,154,111,0.1)", color: loc.id === "online" ? "#6F8B9A" : "#8B9A6F", fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5 }}>
+                    {loc.id === "online" ? "🌐 Virtual" : `📍 ${loc.name}`}
+                  </span>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: "#C4956A" }}>→</span>
+                </div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 600, color: "#3D3225", marginBottom: 6 }}>{c.name}</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#A0907C", marginBottom: 4 }}>{c.address}</p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#7A6B5A", lineHeight: 1.6, flex: 1, marginBottom: 16 }}>{c.desc}</p>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
+                  {practiceTypes.map(t => {
+                    const pr = PRACTICES.find(p => p.id === t);
+                    return <span key={t} style={{ fontSize: 9, padding: "3px 10px", borderRadius: 10, background: `${pr.color}10`, color: pr.color, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase" }}>{pr.icon} {pr.title}</span>;
+                  })}
+                </div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#8B6F4E", fontWeight: 600 }}>
+                  {sessionCount} sessions available
+                </div>
               </div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 600, color: "#3D3225", marginBottom: 6 }}>{c.name}</h3>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#A0907C", marginBottom: 4 }}>{c.address}</p>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#7A6B5A", lineHeight: 1.6, flex: 1, marginBottom: 16 }}>{c.desc}</p>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
-                {practiceTypes.map(t => {
-                  const pr = PRACTICES.find(p => p.id === t);
-                  return <span key={t} style={{ fontSize: 9, padding: "3px 10px", borderRadius: 10, background: `${pr.color}10`, color: pr.color, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase" }}>{pr.icon} {pr.title}</span>;
-                })}
-              </div>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#8B6F4E", fontWeight: 600 }}>
-                {sessionCount} sessions available
-              </div>
-            </div>
-          );
-        });
+            );
+          });
         })()}
       </div>
     </>
@@ -918,8 +918,8 @@ function Hero({ scrollTo }) {
         {[0, 36, 72, 108, 144].map(r => <ellipse key={r} cx="50" cy="50" rx="13" ry="36" fill="#8B6F4E" transform={`rotate(${r} 50 50)`} />)}
       </svg>
       <svg style={{ position: "absolute", bottom: 0, left: 0, right: 0, opacity: 0.09, width: "100%" }} viewBox="0 0 1440 200" preserveAspectRatio="none">
-        <path d="M0 200L0 140Q120 80 240 110Q360 60 480 90Q580 40 720 70Q840 30 960 80Q1080 50 1200 95Q1320 70 1440 100L1440 200Z" fill="#8B6F4E"/>
-        <path d="M0 200L0 160Q180 120 360 145Q540 100 720 130Q900 90 1080 125Q1260 105 1440 140L1440 200Z" fill="#C4956A"/>
+        <path d="M0 200L0 140Q120 80 240 110Q360 60 480 90Q580 40 720 70Q840 30 960 80Q1080 50 1200 95Q1320 70 1440 100L1440 200Z" fill="#8B6F4E" />
+        <path d="M0 200L0 160Q180 120 360 145Q540 100 720 130Q900 90 1080 125Q1260 105 1440 140L1440 200Z" fill="#C4956A" />
       </svg>
       <div style={{ position: "absolute", top: "30%", left: "50%", transform: "translate(-50%,-50%)", width: 600, height: 600, borderRadius: "50%", background: "radial-gradient(circle,rgba(196,149,106,0.12) 0%,transparent 70%)" }} />
       <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "radial-gradient(circle at 1px 1px,#8B6F4E 0.5px,transparent 0)", backgroundSize: "48px 48px" }} />
@@ -944,12 +944,12 @@ function About() {
   return (
     <section id="about" style={{ padding: "100px 24px", background: "#FAF7F0", position: "relative", overflow: "hidden" }}>
       <svg style={{ position: "absolute", top: "5%", right: "2%", opacity: 0.07, width: 200 }} viewBox="0 0 200 300">
-        <path d="M100 0Q80 50 100 100Q120 150 100 200Q80 250 100 300" stroke="#8B6F4E" fill="none" strokeWidth="1"/>
-        <ellipse cx="85" cy="40" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 40)"/>
-        <ellipse cx="115" cy="80" rx="18" ry="10" fill="#8B6F4E" transform="rotate(20 115 80)"/>
-        <ellipse cx="85" cy="130" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 130)"/>
-        <ellipse cx="115" cy="180" rx="18" ry="10" fill="#8B6F4E" transform="rotate(20 115 180)"/>
-        <ellipse cx="85" cy="230" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 230)"/>
+        <path d="M100 0Q80 50 100 100Q120 150 100 200Q80 250 100 300" stroke="#8B6F4E" fill="none" strokeWidth="1" />
+        <ellipse cx="85" cy="40" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 40)" />
+        <ellipse cx="115" cy="80" rx="18" ry="10" fill="#8B6F4E" transform="rotate(20 115 80)" />
+        <ellipse cx="85" cy="130" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 130)" />
+        <ellipse cx="115" cy="180" rx="18" ry="10" fill="#8B6F4E" transform="rotate(20 115 180)" />
+        <ellipse cx="85" cy="230" rx="18" ry="10" fill="#8B6F4E" transform="rotate(-20 85 230)" />
       </svg>
       <div style={{ position: "relative", top: -1, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(196,149,106,0.2), transparent)", marginBottom: 0 }} />
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -1091,13 +1091,13 @@ function Testimonials() {
 // ─── WISDOM LIBRARY (Books + Videos) ───
 function WisdomLibrary() {
   const [tab, setTab] = useState("books");
-  const icons = { exercise:"🌿", kayakalpa:"☀️", meditation:"🪷", introspection:"🕊️", wellness:"💧", philosophy:"✦", about:"📜", testimonial:"💬" };
-  const cClr = { meditation:"#C4956A", exercise:"#8B9A6F", kayakalpa:"#9A7FB5", introspection:"#6F8B9A", about:"#8B6F4E", testimonial:"#C4956A" };
+  const icons = { exercise: "🌿", kayakalpa: "☀️", meditation: "🪷", introspection: "🕊️", wellness: "💧", philosophy: "✦", about: "📜", testimonial: "💬" };
+  const cClr = { meditation: "#C4956A", exercise: "#8B9A6F", kayakalpa: "#9A7FB5", introspection: "#6F8B9A", about: "#8B6F4E", testimonial: "#C4956A" };
   return (
     <section id="wisdom" style={{ padding: "100px 24px", background: "#FAF7F0", position: "relative", overflow: "hidden" }}>
       <div style={{ position: "absolute", inset: 0, opacity: 0.04, backgroundImage: "radial-gradient(circle at 1px 1px,#8B6F4E 0.5px,transparent 0)", backgroundSize: "32px 32px" }} />
       <svg style={{ position: "absolute", bottom: "5%", right: "5%", opacity: 0.07, width: 250 }} viewBox="0 0 100 100">
-        {[0,30,60,90,120,150].map(r => <ellipse key={r} cx="50" cy="50" rx="10" ry="34" fill="#8B6F4E" transform={`rotate(${r} 50 50)`}/>)}
+        {[0, 30, 60, 90, 120, 150].map(r => <ellipse key={r} cx="50" cy="50" rx="10" ry="34" fill="#8B6F4E" transform={`rotate(${r} 50 50)`} />)}
       </svg>
       <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <FadeIn><div style={{ textAlign: "center", marginBottom: 20 }}>
@@ -1106,18 +1106,18 @@ function WisdomLibrary() {
           <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "#7A6B5A", marginTop: 10, maxWidth: 520, margin: "10px auto 0" }}>Over 80 books by Vethathiri Maharishi and a rich collection of video teachings from SKY Yoga TV.</p>
         </div></FadeIn>
         <FadeIn delay={0.1}><div style={{ display: "flex", justifyContent: "center", gap: 4, background: "#F3EDE2", borderRadius: 14, padding: 4, width: "fit-content", margin: "0 auto 44px" }}>
-          {[{k:"books",l:"📖 Books",c:BOOKS.length},{k:"videos",l:"▶ Videos",c:VIDEOS.length}].map(t => (
-            <button key={t.k} onClick={() => setTab(t.k)} style={{ padding: "10px 28px", borderRadius: 11, border: "none", cursor: "pointer", background: tab===t.k?"#FAF7F0":"transparent", boxShadow: tab===t.k?"0 2px 12px rgba(61,50,37,0.06)":"none", fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: tab===t.k?"#3D3225":"#A0907C", transition: "all 0.3s" }}>{t.l} <span style={{ fontSize: 11, opacity: 0.5 }}>({t.c})</span></button>
+          {[{ k: "books", l: "📖 Books", c: BOOKS.length }, { k: "videos", l: "▶ Videos", c: VIDEOS.length }].map(t => (
+            <button key={t.k} onClick={() => setTab(t.k)} style={{ padding: "10px 28px", borderRadius: 11, border: "none", cursor: "pointer", background: tab === t.k ? "#FAF7F0" : "transparent", boxShadow: tab === t.k ? "0 2px 12px rgba(61,50,37,0.06)" : "none", fontFamily: "'DM Sans',sans-serif", fontSize: 13, fontWeight: 500, color: tab === t.k ? "#3D3225" : "#A0907C", transition: "all 0.3s" }}>{t.l} <span style={{ fontSize: 11, opacity: 0.5 }}>({t.c})</span></button>
           ))}
         </div></FadeIn>
         {tab === "books" && <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(300px,1fr))", gap: 20 }}>
           {BOOKS.map((b, i) => (
-            <FadeIn key={b.id} delay={i*0.05}><div style={{ background: "#F7F2EA", borderRadius: 18, padding: 28, display: "flex", flexDirection: "column", height: "100%", border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s" }}
+            <FadeIn key={b.id} delay={i * 0.05}><div style={{ background: "#F7F2EA", borderRadius: 18, padding: 28, display: "flex", flexDirection: "column", height: "100%", border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s" }}
               onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; }}
               onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
               <div style={{ display: "flex", gap: 16, marginBottom: 16 }}>
                 <div style={{ width: 72, minWidth: 72, height: 100, borderRadius: 8, background: `linear-gradient(145deg,${b.clr}20,${b.clr}08)`, border: `1px solid ${b.clr}20`, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4 }}>
-                  <span style={{ fontSize: 24 }}>{icons[b.cat]||"✦"}</span>
+                  <span style={{ fontSize: 24 }}>{icons[b.cat] || "✦"}</span>
                   <div style={{ width: 28, height: 2, borderRadius: 1, background: `${b.clr}30` }} />
                 </div>
                 <div style={{ flex: 1 }}>
@@ -1127,13 +1127,13 @@ function WisdomLibrary() {
               </div>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, lineHeight: 1.7, color: "#7A6B5A", flex: 1, marginBottom: 16 }}>{b.desc}</p>
               <a href={b.url} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "9px 18px", borderRadius: 10, background: "rgba(196,149,106,0.06)", border: "1px solid rgba(196,149,106,0.12)", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#8B6F4E", fontWeight: 500, textDecoration: "none", transition: "all 0.2s", alignSelf: "flex-start" }}
-                onMouseOver={e => e.currentTarget.style.background="rgba(196,149,106,0.12)"}
-                onMouseOut={e => e.currentTarget.style.background="rgba(196,149,106,0.06)"}>View on Amazon →</a>
+                onMouseOver={e => e.currentTarget.style.background = "rgba(196,149,106,0.12)"}
+                onMouseOut={e => e.currentTarget.style.background = "rgba(196,149,106,0.06)"}>View on Amazon →</a>
             </div></FadeIn>
           ))}
           <FadeIn delay={0.35}><a href="https://www.amazon.com/s?k=vethathiri+maharishi&i=digital-text" target="_blank" rel="noopener noreferrer" style={{ background: "linear-gradient(145deg,rgba(196,149,106,0.06),rgba(196,149,106,0.02))", borderRadius: 18, padding: 28, border: "2px dashed rgba(196,149,106,0.15)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textDecoration: "none", transition: "all 0.35s", minHeight: 200 }}
-            onMouseOver={e => { e.currentTarget.style.borderColor="rgba(196,149,106,0.3)"; e.currentTarget.style.background="rgba(196,149,106,0.06)"; }}
-            onMouseOut={e => { e.currentTarget.style.borderColor="rgba(196,149,106,0.15)"; e.currentTarget.style.background="linear-gradient(145deg,rgba(196,149,106,0.06),rgba(196,149,106,0.02))"; }}>
+            onMouseOver={e => { e.currentTarget.style.borderColor = "rgba(196,149,106,0.3)"; e.currentTarget.style.background = "rgba(196,149,106,0.06)"; }}
+            onMouseOut={e => { e.currentTarget.style.borderColor = "rgba(196,149,106,0.15)"; e.currentTarget.style.background = "linear-gradient(145deg,rgba(196,149,106,0.06),rgba(196,149,106,0.02))"; }}>
             <div style={{ fontSize: 32, marginBottom: 12, opacity: 0.4 }}>📚</div>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, color: "#8B6F4E", marginBottom: 4 }}>Browse All Books</div>
             <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#A0907C" }}>80+ titles on Amazon & Kindle</div>
@@ -1142,11 +1142,11 @@ function WisdomLibrary() {
         {tab === "videos" && <div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(320px,1fr))", gap: 20, marginBottom: 32 }}>
             {VIDEOS.map((v, i) => (
-              <FadeIn key={v.id} delay={i*0.05}><a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
+              <FadeIn key={v.id} delay={i * 0.05}><a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
                 <div style={{ background: "#F7F2EA", borderRadius: 18, overflow: "hidden", border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s" }}
                   onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; }}
                   onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}>
-                  <div style={{ width: "100%", paddingBottom: "56.25%", position: "relative", background: `linear-gradient(135deg,${cClr[v.cat]||"#C4956A"}15,${cClr[v.cat]||"#C4956A"}05)` }}>
+                  <div style={{ width: "100%", paddingBottom: "56.25%", position: "relative", background: `linear-gradient(135deg,${cClr[v.cat] || "#C4956A"}15,${cClr[v.cat] || "#C4956A"}05)` }}>
                     <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 8 }}>
                       <div style={{ width: 56, height: 56, borderRadius: "50%", background: "rgba(255,255,255,0.9)", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 4px 20px rgba(61,50,37,0.1)" }}>
                         <div style={{ width: 0, height: 0, borderTop: "10px solid transparent", borderBottom: "10px solid transparent", borderLeft: "16px solid #C4956A", marginLeft: 3 }} />
@@ -1165,8 +1165,8 @@ function WisdomLibrary() {
           </div>
           <FadeIn delay={0.3}><div style={{ textAlign: "center" }}>
             <a href={YT_CHANNEL} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 32px", borderRadius: 14, background: "rgba(196,149,106,0.06)", border: "1px solid rgba(196,149,106,0.12)", fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#8B6F4E", fontWeight: 500, textDecoration: "none", transition: "all 0.2s" }}
-              onMouseOver={e => e.currentTarget.style.background="rgba(196,149,106,0.12)"}
-              onMouseOut={e => e.currentTarget.style.background="rgba(196,149,106,0.06)"}>
+              onMouseOver={e => e.currentTarget.style.background = "rgba(196,149,106,0.12)"}
+              onMouseOut={e => e.currentTarget.style.background = "rgba(196,149,106,0.06)"}>
               <span style={{ fontSize: 18 }}>▶</span> Visit SKY Yoga TV on YouTube →
             </a>
           </div></FadeIn>

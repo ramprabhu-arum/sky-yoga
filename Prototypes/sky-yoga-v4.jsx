@@ -336,7 +336,7 @@ function ProgramRegModal({ program, onClose, members, onRegister }) {
           {step === 2 && (
             <div style={{ textAlign: "center", padding: "12px 0" }}>
               <div style={{ fontSize: 44, marginBottom: 14 }}>🙏</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Namaste, {form.name}!</h3>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Welcome, {form.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#7A6B5A", lineHeight: 1.7, marginBottom: 4 }}>
                 You're registered for <strong>{program.title}</strong>.
               </p>
@@ -457,7 +457,7 @@ function RegistrationModal({ session, onClose }) {
           ) : (
             <div style={{ textAlign: "center", padding: "16px 0" }}>
               <div style={{ fontSize: 44, marginBottom: 14 }}>🙏</div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Namaste, {form.name}!</h3>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, color: "#3D3225", marginBottom: 6 }}>Welcome, {form.name}!</h3>
               <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, color: "#7A6B5A", lineHeight: 1.7, marginBottom: 4 }}>
                 You're registered for <strong>{session.title}</strong>.
               </p>
@@ -525,14 +525,14 @@ function ExploreCourses({ onClose, onCenterClick, onSignUp }) {
     const p = PRACTICES.find(pr => pr.id === selectedPractice);
     const sessions = SESSIONS.filter(s => s.type === selectedPractice);
     const centersWithSessions = [...new Set(sessions.map(s => s.centerId))].map(cid => CENTERS.find(c => c.id === cid));
-    
+
     // Filter centers by location search
-    const filteredCenters = locSearch.trim() 
+    const filteredCenters = locSearch.trim()
       ? centersWithSessions.filter(c => {
-          const loc = LOCATIONS.find(l => l.id === c.locationId);
-          const q = locSearch.toLowerCase();
-          return c.name.toLowerCase().includes(q) || loc.name.toLowerCase().includes(q) || loc.state.toLowerCase().includes(q) || (loc.country || "").toLowerCase().includes(q) || c.address.toLowerCase().includes(q);
-        })
+        const loc = LOCATIONS.find(l => l.id === c.locationId);
+        const q = locSearch.toLowerCase();
+        return c.name.toLowerCase().includes(q) || loc.name.toLowerCase().includes(q) || loc.state.toLowerCase().includes(q) || (loc.country || "").toLowerCase().includes(q) || c.address.toLowerCase().includes(q);
+      })
       : centersWithSessions;
 
     return (
@@ -563,7 +563,7 @@ function ExploreCourses({ onClose, onCenterClick, onSignUp }) {
           <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#A0907C" }}>
             Available at {centersWithSessions.length} center{centersWithSessions.length !== 1 ? "s" : ""}
           </div>
-          <input 
+          <input
             type="text" placeholder="Search by city, state, or center name..." value={locSearch}
             onChange={e => setLocSearch(e.target.value)}
             style={{
@@ -771,7 +771,7 @@ function FindCenter({ onClose, onCourseClick, onSignUp, initialCenter }) {
 
       {/* Location search */}
       <div style={{ maxWidth: 440, margin: "0 auto 12px", position: "relative" }}>
-        <input 
+        <input
           type="text" placeholder="Search by city, state, or country..." value={searchQ}
           onChange={e => { setSearchQ(e.target.value); setSelLocation(null); }}
           style={{
@@ -827,40 +827,40 @@ function FindCenter({ onClose, onCourseClick, onSignUp, initialCenter }) {
             </div>
           );
           return filtered.map(c => {
-          const loc = LOCATIONS.find(l => l.id === c.locationId);
-          const sessionCount = SESSIONS.filter(s => s.centerId === c.id).length;
-          const practiceTypes = [...new Set(SESSIONS.filter(s => s.centerId === c.id).map(s => s.type))];
-          const nextSession = SESSIONS.filter(s => s.centerId === c.id)[0];
-          return (
-            <div key={c.id} onClick={() => setSelCenter(c.id)} style={{
-              background: "#F7F2EA", borderRadius: 18, padding: 28, cursor: "pointer",
-              border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s",
-              display: "flex", flexDirection: "column",
-            }}
-              onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.2)"; }}
-              onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.08)"; }}
-            >
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 14 }}>
-                <span style={{ fontSize: 10, padding: "4px 12px", borderRadius: 12, background: loc.id === "online" ? "rgba(111,139,154,0.1)" : "rgba(139,154,111,0.1)", color: loc.id === "online" ? "#6F8B9A" : "#8B9A6F", fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5 }}>
-                  {loc.id === "online" ? "🌐 Virtual" : `📍 ${loc.name}`}
-                </span>
-                <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: "#C4956A" }}>→</span>
+            const loc = LOCATIONS.find(l => l.id === c.locationId);
+            const sessionCount = SESSIONS.filter(s => s.centerId === c.id).length;
+            const practiceTypes = [...new Set(SESSIONS.filter(s => s.centerId === c.id).map(s => s.type))];
+            const nextSession = SESSIONS.filter(s => s.centerId === c.id)[0];
+            return (
+              <div key={c.id} onClick={() => setSelCenter(c.id)} style={{
+                background: "#F7F2EA", borderRadius: 18, padding: 28, cursor: "pointer",
+                border: "1px solid rgba(196,149,106,0.08)", transition: "all 0.35s",
+                display: "flex", flexDirection: "column",
+              }}
+                onMouseOver={e => { e.currentTarget.style.transform = "translateY(-3px)"; e.currentTarget.style.boxShadow = "0 12px 40px rgba(61,50,37,0.06)"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.2)"; }}
+                onMouseOut={e => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; e.currentTarget.style.borderColor = "rgba(196,149,106,0.08)"; }}
+              >
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", marginBottom: 14 }}>
+                  <span style={{ fontSize: 10, padding: "4px 12px", borderRadius: 12, background: loc.id === "online" ? "rgba(111,139,154,0.1)" : "rgba(139,154,111,0.1)", color: loc.id === "online" ? "#6F8B9A" : "#8B9A6F", fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase", letterSpacing: 0.5 }}>
+                    {loc.id === "online" ? "🌐 Virtual" : `📍 ${loc.name}`}
+                  </span>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 18, color: "#C4956A" }}>→</span>
+                </div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 600, color: "#3D3225", marginBottom: 6 }}>{c.name}</h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#A0907C", marginBottom: 4 }}>{c.address}</p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#7A6B5A", lineHeight: 1.6, flex: 1, marginBottom: 16 }}>{c.desc}</p>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
+                  {practiceTypes.map(t => {
+                    const pr = PRACTICES.find(p => p.id === t);
+                    return <span key={t} style={{ fontSize: 9, padding: "3px 10px", borderRadius: 10, background: `${pr.color}10`, color: pr.color, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase" }}>{pr.icon} {pr.title}</span>;
+                  })}
+                </div>
+                <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#8B6F4E", fontWeight: 600 }}>
+                  {sessionCount} sessions available
+                </div>
               </div>
-              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 600, color: "#3D3225", marginBottom: 6 }}>{c.name}</h3>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#A0907C", marginBottom: 4 }}>{c.address}</p>
-              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 13, color: "#7A6B5A", lineHeight: 1.6, flex: 1, marginBottom: 16 }}>{c.desc}</p>
-              <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
-                {practiceTypes.map(t => {
-                  const pr = PRACTICES.find(p => p.id === t);
-                  return <span key={t} style={{ fontSize: 9, padding: "3px 10px", borderRadius: 10, background: `${pr.color}10`, color: pr.color, fontFamily: "'DM Sans',sans-serif", fontWeight: 600, textTransform: "uppercase" }}>{pr.icon} {pr.title}</span>;
-                })}
-              </div>
-              <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: "#8B6F4E", fontWeight: 600 }}>
-                {sessionCount} sessions available
-              </div>
-            </div>
-          );
-        });
+            );
+          });
         })()}
       </div>
     </>
